@@ -3,14 +3,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name         = 'gereedschapcentrum',
+    name         = 'Gereedschapcentrum',
     version      = '1.0',
     packages     = find_packages(),
     package_data={
-        'gereedschapcentrum' : ['resources/*.csv']
+        'Gereedschapcentrum' : ['resources/*.csv']
     },
     entry_points = {
-        'scrapy': ['settings = gereedschapcentrum.settings']
+        'scrapy': ['settings = Gereedschapcentrum.settings']
     },
     zip_safe=False,
 )
