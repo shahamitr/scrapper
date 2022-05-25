@@ -3,10 +3,18 @@ import csv
 import pkgutil
 import time
 from random import randint
+import os
+
+directory = os.getcwd()
+filepath = directory+"/resources/gyzs_ean.csv"
+
+filepath = (os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'resources', 'gyzs_ean.csv')))
+print(filepath)
+
 
 #open file
-file = open('../resources/gyzs_ean.csv')
-
+file = open(filepath)
+    
 #read file
 csv_reader = csv.reader(file)
 
