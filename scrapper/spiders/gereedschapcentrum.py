@@ -8,15 +8,19 @@ import os
 directory = os.getcwd()
 filepath = directory+"/resources/gyzs_ean.csv"
 
-filepath = (os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'resources', 'gyzs_ean.csv')))
-print(filepath)
+#filepath = (os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'resources', 'gyzs_ean.csv')))
+filepath = ('resources/gyzs_ean.csv')
+
+csv_file = pkgutil.get_data("scrapper", "resources/gyzs_ean.csv") #csv inladen
+# csv_file = pkgutil.get_data("bouwsales", "resources/link_bouwsales.csv")
+csv_reader = csv.reader(csv_file.decode('utf-8').splitlines(), delimiter=',')
 
 
 #open file
-file = open(filepath)
+#file = open(filepath)
     
 #read file
-csv_reader = csv.reader(file)
+#csv_reader = csv.reader(file)
 
 #store header of file
 header = []
