@@ -5,41 +5,18 @@ import time
 from random import randint
 import os
 
-directory = os.getcwd()
-filepath = directory+"/resources/gyzs_ean.csv"
-
-#filepath = (os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'resources', 'gyzs_ean.csv')))
-filepath = ('resources/gyzs_ean.csv')
-
-csv_file = pkgutil.get_data("scrapper", "resources/gyzs_ean.csv") #csv inladen
-# csv_file = pkgutil.get_data("bouwsales", "resources/link_bouwsales.csv")
-csv_reader = csv.reader(csv_file.decode('utf-8').splitlines(), delimiter=',')
-
-
-#open file
-#file = open(filepath)
-    
-#read file
-#csv_reader = csv.reader(file)
-
-#store header of file
-header = []
-header = next(csv_reader)
-header
-
-
 #store ean from file
 
-list_ean = []
-
-for line in csv_reader:
-    list_ean.append(line)
-list_ean = str(list_ean)
-list_ean = list_ean.replace("[", "")
-list_ean = list_ean.replace("]", "")
-list_ean = list_ean.replace("'", "")
-list_ean = list_ean.replace(" ", "")
-list_ean = list_ean.split(",")
+list_ean = [8713515012285,
+8713515012308,
+8713515013558,
+8713515012469,
+0088381662710,
+5025536634265,
+5025536359496,
+5025536333779,
+5025536529653,
+5025536631035]
 
 class GereedschapcentrumSpider(scrapy.Spider):
     name = 'gereedschapcentrum'
