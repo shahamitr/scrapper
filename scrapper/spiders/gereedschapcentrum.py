@@ -24,6 +24,16 @@ class GereedschapcentrumSpider(scrapy.Spider):
         prijs_eu = prijs_eu.replace("</sup>", "")
         prijs_eu = prijs_eu.replace('<span data-label="Incl. BTW" data-price-type="finalPrice" class="price-wrapper price-including-tax "><span class="price">', "")
         prijs_eu = prijs_eu.replace("</span>", "")
+        
+        prijs_eu = str(response.xpath('//*[@data-price-type="finalPrice"]').getall())
+        prijs_eu = prijs_eu.replace(",", ".")
+        prijs_eu = prijs_eu.replace("[", "")
+        prijs_eu = prijs_eu.replace("]", "")
+        prijs_eu = prijs_eu.replace("'", "")
+        prijs_eu = prijs_eu.replace("<sup>", "")
+        prijs_eu = prijs_eu.replace("</sup>", "")
+        prijs_eu = prijs_eu.replace('<span data-label="Incl. BTW" data-price-type="finalPrice" class="price-wrapper price-including-tax "><span class="price">', "")
+        prijs_eu = prijs_eu.replace("</span>", "")
 
         prijs = prijs_eu
         if prijs != '':
@@ -44,8 +54,17 @@ class GereedschapcentrumSpider(scrapy.Spider):
             link = link.replace('[', '')
             link = link.replace("'", "")
 
+            prijs_excl = str(response.xpath('//*[@data-price-type="basePrice"]').getall())
+            prijs_excl = prijs_excl.replace('<span data-label="excl. BTW" data-price-type="basePrice" class="price-wrapper price-excluding-tax"><span class="price">', "")
+            prijs_excl = prijs_excl.replace("</span>", "")
+            prijs_excl = prijs_excl.replace(",", ".")
+            prijs_excl = prijs_excl.replace("[", "")
+            prijs_excl = prijs_excl.replace("]", "")
+            prijs_excl = prijs_excl.replace("'", "")
+
             data['Ean'] = ean
             data['Gereedschapcentrum-Prise'] = prijs
+            data['Gereedschapcentrum-Prise-BTW'] = prijs_excl
             data['Gereedschapcentrum-Titel'] = titel
             data['Gereedschapcentrum-Link'] = link
             yield data
